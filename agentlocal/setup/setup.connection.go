@@ -6,7 +6,7 @@ import (
 	"os"
 	"os/exec"
 
-	"agentlocal/docker"
+	_ "agentlocal/docker"
 	"agentlocal/utils/color"
 )
 
@@ -35,8 +35,8 @@ func Pin() {
 	fmt.Println()
 	fmt.Println(connectionKey)
 
-	docker.InstallCore()
-	out, e := execute("sudo docker ps")
+	//docker.InstallCore()
+	out, e := execute("docker ps")
 	if e != nil {
 		fmt.Println(e)
 	}
