@@ -1,0 +1,43 @@
+name: docker-app
+version: '0.1' 
+summary: a dockerized app snap.
+description: |
+   a dockerized app snap for Licvid.
+
+grade: stable
+confinement: strict
+
+plugs:
+  support:
+    interface: docker-support
+  privileged:
+    interface: docker-support
+    privileged-containers: true
+  docker-cli:
+    interface: docker
+  docker-executables:
+    content: docker-executables
+    default-provider: docker
+    interface: content
+    target: docker-env
+
+apps: 
+  sqdron:
+    command: docker-wrapper agentlocal
+    plugs: [network, docker-executables, docker-cli]
+  server:
+    command: docker-wrapper server
+    plugs: [network, docker-executables, docker-cli]
+
+parts:
+  agentlocal:
+    plugin: go
+    source: ./agentlocal
+  server:
+    plugin: go
+    source: ./server
+  environment:
+    plugin: dump
+    source: src/
+    organize:
+      'docker-wrapper' : bin/
