@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package sqdron;
+
+service SdronService {
+    rpc AppList (AppListRequest) returns (AppListReply) {}
+}
+
+message AppListRequest {
+    string command = 1;
+}
+
+message AppListReply {
+    string result = 2;
+}
