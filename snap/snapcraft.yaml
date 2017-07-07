@@ -1,5 +1,5 @@
 name: docker-app
-version: '0.1' 
+version: '0.2'
 summary: a dockerized app snap.
 description: |
    a dockerized app snap for Licvid.
